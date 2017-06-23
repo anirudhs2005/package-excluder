@@ -41,7 +41,7 @@ async function findFile1MinusFile2() {
                           </types>`
                 })
         }
-        const packageXMLString = `<?xml version="1.0" >
+        const packageXMLString = `<?xml version="1.0" encoding="UTF-8"?>
             <Package xmlns="http://soap.sforce.com/2006/04/metadata">
                  ${data1
                         .map(data=>
@@ -56,6 +56,7 @@ async function findFile1MinusFile2() {
             </Package>`;
         const prettyXML = pd.xml(packageXMLString);
         fs.writeFileSync(consolidatedFile,prettyXML);
+        console.log(`Finished generating output at ${consolidatedFile}`);
 
 
 
@@ -66,5 +67,7 @@ async function findFile1MinusFile2() {
         console.log(err);
     }
 }
+
+console.log(`Started finding difference between ${file1} and ${file2}`);
 //Start program 
 findFile1MinusFile2();
